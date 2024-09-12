@@ -63,10 +63,6 @@ function App() {
     getPopularBookDetails();
 }, []);
 
-useEffect(() => {
-  fetchBookOfTheWeek();
-}, []);
-
 async function getBookOfTheWeek() {
   try {
     const response3 = await fetch('https://openlibrary.org/search.json?q=the');
@@ -84,6 +80,7 @@ async function getBookOfTheWeek() {
   }
 }
 
+useEffect(() => {
 const fetchBookOfTheWeek = async () => {
   const lastUpdateDate = localStorage.getItem('lastUpdateDate');
   const currentDate = new Date();
@@ -100,6 +97,8 @@ const fetchBookOfTheWeek = async () => {
     setBookOfTheWeek(storedBook);
   }
 };
+fetchBookOfTheWeek();
+}, []);
 
   return (
     <div className="App">
